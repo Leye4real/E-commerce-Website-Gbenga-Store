@@ -1,7 +1,10 @@
 const router = require('express').Router()
 const userCtrl = require('./controllers/userCtrl')
-router.post('/register', (req,res)=>{
-    res.json({msg: "Test Router"})
-})
+const auth = require('../middlewares/auth')
+router.post('/register', userCtrl.register)
+router.post('/login', userCtrl.login)
+router.get('/logOut', userCtrl.logOut)
+router.get('/refresh_token', userCtrl.refreshToken)
+router.get('/infor', auth,userCtrl.getUser)
 
 module.exports = router
